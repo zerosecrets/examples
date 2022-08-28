@@ -1,0 +1,45 @@
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      # Use the latest commit hash (SHA) as part of the container's tag so
+      # that the tags are unique
+      #
+      # TODO Replace <YOUR_REGISTRY_NAME> with the name of your registry
+      CONTAINER_TAG: registry.digitalocean.com/<YOUR_REGISTRY_NAME>/nextjs-docker:${{ github.sha }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Retrive the DigitalOcean token from Zero
+        uses: zerosecrets/github-actions/token-to-secrets@main
+        id: zero
+        with:
+          zero-token: ${{ secrets.ZERO_TOKEN }}
+          apis: ['digital-ocean']
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ env.ZERO_SECRET_TOKEN }}
+
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 600
+
+      # TODO Replace <KUBERNETES_CLUSTER_NAME> with the name of your cluster,
+      # e.g. k8s-1-23-9-do-0-nyc3-1661101912086
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 <KUBERNETES_CLUSTER_NAME>
+
+      - name: docker build
+        run: docker build -t $CONTAINER_TAG .
+
+      - name: docker push
+        run: docker push $CONTAINER_TAG
+
+      - name: Update Kubernetes deployment
+        run: kubectl set image deployment nextjs-docker nextjs-docker=$CONTAINER_TAG
+
+      - name: Verify deployment
+        run: kubectl rollout status deployment/nextjs-docker
