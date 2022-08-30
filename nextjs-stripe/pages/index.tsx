@@ -1,16 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
+import bookImage from '../public/book.svg';
 
 const ProductDisplay: React.FC = () => (
   <section>
     <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
+      <Image src={bookImage} alt="The cover of Stubborn Attachments" />
       <div className="description">
         <h3>Stubborn Attachments</h3>
         <h5>$20.00</h5>

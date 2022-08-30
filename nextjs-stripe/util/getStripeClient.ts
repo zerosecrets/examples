@@ -23,7 +23,10 @@ export async function getStripeClient(): Promise<Stripe> {
   }).fetch();
 
   if (!secrets.stripe) {
-    throw new Error('Did not receive an API key for SendGrid.');
+    throw new Error(
+      'Did not receive an API key for Stripe. ' +
+        'Did you remember to add a Stripe secret to your Zero token?'
+    );
   }
 
   stripe = new Stripe(secrets.stripe.secret_api_key, {
