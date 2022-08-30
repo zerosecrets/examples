@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getStripeClient } from '../../util';
 
-const MY_DOMAIN = 'http://localhost:3000';
+const DOMAIN = process.env.DOMAIN;
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,13 +17,13 @@ export default async function handler(
         // This is a price ID copied from the Stripe Dashboard
         //
         // TODO Paste the price ID of the product you created here.
-        price: 'YOUR_PRICE_ID',
+        price: 'price_1LYuqlBzNL28s33DQYwQxFx7',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${MY_DOMAIN}?success=true`,
-    cancel_url: `${MY_DOMAIN}?canceled=true`,
+    success_url: `${DOMAIN}?success=true`,
+    cancel_url: `${DOMAIN}?canceled=true`,
   });
 
   if (!session.url) {
