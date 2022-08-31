@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@zerosecrets/zero": "^0.1.12",
+    "@zerosecrets/zero": "0.1.12",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
