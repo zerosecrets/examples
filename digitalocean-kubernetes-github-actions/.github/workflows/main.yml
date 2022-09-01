@@ -1,3 +1,6 @@
+# This workflow is based off of an example provided by DigitalOcean:
+# https://github.com/do-community/example-doctl-action/blob/main/.github/workflows/workflow.yaml
+
 on: [push]
 jobs:
   deploy:
