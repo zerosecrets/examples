@@ -10,4 +10,4 @@ A Next.js application that allows purchasing a mock product through the Stripe A
 
 ### [`digitalocean-kubernetes-github-actions`](https://github.com/zerosecrets/examples/tree/main/digitalocean-kubernetes-github-actions)
 
-A Next.js application with a GitHub Actions workflow that builds the application into a Docker image and then deploys the image to a DigitalOcean Kubernetes cluster.
+A Next.js application with a GitHub Actions workflow that builds the application into a Docker image and then deploys the image to a DigitalOcean Kubernetes cluster. The application displays a button which logs an analytics event with Segment when clicked.
