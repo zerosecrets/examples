@@ -9,10 +9,7 @@ This example is explained in depth in the blog article (Upcoming) [Monitor Conta
 - `cargo run` - build & run the server binary directly on your system
 - `docker build -t hash-server .` - built the Docker image
 - `docker run -p 8080:8080 --init hash-server` - run the server as a container
-
-### `client`
-
-- `cargo run 127.0.0.1:8080` — make a TCP connection to localhost on port 8080
+- `curl telnet://127.0.0.1:8080 <<< testString` — send "testString" to the server over TCP
 
 ### `datadog-agent`
 
