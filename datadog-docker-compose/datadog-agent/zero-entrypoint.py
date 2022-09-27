@@ -1,49 +1,26 @@
 import os
 import sys
-import requests
-import json
+from zero_sdk import zero
 
 if 'ZERO_TOKEN' not in os.environ:
     print('ZERO_TOKEN environment variable not set.')
     sys.exit(1)
 
-query = """query {{ 
-  secrets(zeroToken: \"{}\", pick: [\"datadog\"]) {{
-    name 
-    fields {{
-      name
-      value
-    }}
-  }}
-}}""".format(os.environ['ZERO_TOKEN'])
+secrets = zero(token=ZERO_TOKEN, pick=['datadog']).fetch()
 
-r = requests.post(
-    'https://core.tryzero.com/v1/graphql', 
-    data=json.dumps({ 'query': query }), 
-    headers={ 'Content-Type': 'application/json' }
-)
+if 'datadog' not in secrets:
+  print('datadog secret not found.')
+  sys.exit(1)
 
-# The response looks like this: {'data': {'secrets': [{'name': 'datadog', 'fields': [{'name': 'API_KEY', 'value': '...'}]}]}}
-secrets = r.json()['data']['secrets']
+if 'API_KEY' not in secrets['datadog']:
+  print('API_KEY field not found.')
+  sys.exit(1)
 
-if len(secrets) == 0:
-    print('No secrets were returned.')
-    sys.exit(1)
+api_key = secrets['datadog']['API_KEY']
 
-fields = secrets[0]['fields']
-api_key = None
-
-for field in fields:
-    if field['name'] == 'API_KEY':
-        api_key = field['value']
-        break
-
-if api_key is None:
-    print('Could not find the API_KEY field.')
-    sys.exit(1)
-
-
-print('Successfully retrieved the Datadog API key from Zero.')
+if len(api_key) == 0:
+  print('API_KEY field is empty.')
+  sys.exit(1)
 
 os.environ['DD_API_KEY'] = api_key
 os.system('/bin/entrypoint.sh')
