@@ -1,6 +1,4 @@
-//
 // createClientToken
-//
 
 export const CREATE_CLIENT_TOKEN_MUTATION = `
 mutation createClientToken($input: CreateClientTokenInput) {
@@ -13,9 +11,7 @@ export interface CreateClientTokenResponse {
   data: { createClientToken: { clientToken: string } };
 }
 
-//
 // tokenizeCreditCard
-//
 
 export const TOKENIZE_CREDIT_CARD_MUTATION = `
 mutation tokenizeCreditCard($input: TokenizeCreditCardInput!) {
@@ -65,9 +61,7 @@ export interface TokenizeCreditCardInput {
   creditCard: CreditCardInput;
 }
 
-//
 // chargePaymentMethod
-//
 
 export const CHARGE_PAYMENT_METHOD_MUTATION = `
 mutation chargePaymentMethod($input: ChargePaymentMethodInput!) {
