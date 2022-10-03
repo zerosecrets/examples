@@ -62,7 +62,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 // Write the hash to the socket
                 if let Err(e) = socket.write_all(&hex_bytes).await {
-                    tracing::error!("failed to write to socket; err = {:?}", e);
+                    tracing::error!("Failed to write to socket; err = {:?}", e);
                     return;
                 }
             }
