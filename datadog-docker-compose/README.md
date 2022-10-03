@@ -1,6 +1,6 @@
 # datadog-docker-compose
 
-This example is explained in depth in the blog article (Upcoming) [Monitor Containerized Applications with Datadog and Docker Compose](https://www.tryzero.com/blog/monitor-containerized-applications-with-datadog-and-docker-compose).
+This example is explained in depth in the blog article [Monitor Containerized Applications with Datadog and Docker Compose](https://www.tryzero.com/blog/monitor-containerized-applications-with-datadog-and-docker-compose).
 
 ## Useful commands
 
