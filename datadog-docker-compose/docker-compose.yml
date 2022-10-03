@@ -9,7 +9,7 @@ services:
     init: true
 
     labels:
-      com.datadoghq.ad.logs: '[{"source": "hash-server", "service": "hash-server"}]'
+      com.datadoghq.ad.logs: '[{"source": "rust", "service": "hash-server"}]'
 
   datadog:
     container_name: datadog-agent
