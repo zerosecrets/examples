@@ -13,4 +13,5 @@ This example is explained in depth in the blog article [The Complete Guide to Ge
 If you want to run this example, you need to...
 
 1. Create a Zero token and add a Braintree `API_KEY` secret to it.
+1. Sign up for Braintree and set up your account.
 1. Copy your Braintree merchant ID into `.env`.
