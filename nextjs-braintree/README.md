@@ -1,6 +1,6 @@
 # nextjs-braintree
 
-This example is explained in depth in the blog article (Upcoming) [The Complete Guide to Getting Started with the Braintree GraphQL API](https://www.tryzero.com/blog/the-complete-guide-to-getting-started-with-the-braintree-graphql-api).
+This example is explained in depth in the blog article [The Complete Guide to Getting Started with the Braintree GraphQL API](https://www.tryzero.com/blog/the-complete-guide-to-getting-started-with-the-braintree-graphql-api).
 
 ## Useful commands
 
