@@ -1,6 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import nodeFetch from 'node-fetch';
 import { useState } from 'react';
 import {
   AddressInput,
@@ -36,7 +35,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     },
   };
 
-  const response = await nodeFetch(BRAINTREE_GRAPHQL_ENDPOINT, {
+  // Node 18+ required for built-in fetch support. Use the node-fetch package if
+  // on an older Node version
+  const response = await fetch(BRAINTREE_GRAPHQL_ENDPOINT, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
