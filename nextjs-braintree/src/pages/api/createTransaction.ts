@@ -7,8 +7,8 @@ import {
   ChargePaymentMethodInput,
   CHARGE_PAYMENT_METHOD_MUTATION,
   ChargePaymentMethodResponse,
-} from '../../braintreeApi';
-import { fetchBraintreeApiKey } from '../../braintreeApi/fetchBraintreeApiKey';
+} from 'src/braintreeApi';
+import { fetchBraintreeApiKey } from 'src/braintreeApi/fetchBraintreeApiKey';
 
 export default async function handler(
   req: NextApiRequest,

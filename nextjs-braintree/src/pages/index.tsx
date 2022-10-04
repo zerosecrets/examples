@@ -12,7 +12,7 @@ import {
   TokenizeCreditCardInput,
   TokenizeCreditCardResponse,
   TOKENIZE_CREDIT_CARD_MUTATION,
-} from '../braintreeApi';
+} from 'src/braintreeApi';
 
 // This is a separate import because importing the Zero SDK in the browser will fail
 import { fetchBraintreeApiKey } from '../braintreeApi/fetchBraintreeApiKey';
