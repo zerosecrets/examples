@@ -15,3 +15,7 @@ A Next.js application with a GitHub Actions workflow that builds the application
 ### [`nextjs-braintree`](https://github.com/zerosecrets/examples/tree/main/nextjs-braintree)
 
 A simple Next.js application that illustrates how to charge a credit card using the Braintree GraphQL API.
+
+### [`recaptcha-django`](https://github.com/zerosecrets/examples/tree/main/recaptcha-django)
+
+A Python web app built on Django that renders a user signup form. The form is protected from automated abuse by bots thanks to invisible reCAPTCHA v2.

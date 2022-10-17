@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>reCAPTCHA + Zero</title>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 1rem;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 400px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      input {
+        display: block;
+      }
+
+      button {
+        font-size: 1.25rem;
+      }
+
+      p {
+        color: #777;
+        font-size: 0.875rem;
+      }
+
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit() {
+        document.getElementById('demo-form').submit();
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>reCAPTCHA + Zero</h1>
+
+      {% if message %}
+      <p><strong>Response from server:</strong> {{ message }}</p>
+      {% endif %}
+
+      <form id="demo-form" action="/" method="POST">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input id="username" name="username" />
+        <br />
+
+        <button
+          class="g-recaptcha"
+          data-sitekey="6LfSFGkiAAAAAHK2bWIius5KKOGEEgW1EVfAAN3Q"
+          data-callback="onSubmit"
+        >
+          Sign up
+        </button>
+        <br />
+        <br />
+
+        <p>
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a>
+          apply.
+        </p>
+      </form>
+    </main>
+  </body>
+</html>
