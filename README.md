@@ -15,3 +15,11 @@ A Next.js application with a GitHub Actions workflow that builds the application
 ### [`datadog-docker-compose`](https://github.com/zerosecrets/examples/tree/main/datadog-docker-compose)
 
 A Rust TCP client & server. The server runs as a container which logs to `stdout`. There is a custom Datadog agent container which fetches the Datadog API key from Zero and collects logs from the TCP server.
+
+### [`nextjs-braintree`](https://github.com/zerosecrets/examples/tree/main/nextjs-braintree)
+
+A simple Next.js application that illustrates how to charge a credit card using the Braintree GraphQL API.
+
+### [`recaptcha-django`](https://github.com/zerosecrets/examples/tree/main/recaptcha-django)
+
+A Python web app built on Django that renders a user signup form. The form is protected from automated abuse by bots thanks to invisible reCAPTCHA v2.
