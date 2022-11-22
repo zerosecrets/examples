@@ -11,3 +11,15 @@ A Next.js application that allows purchasing a mock product through the Stripe A
 ### [`digitalocean-kubernetes-github-actions`](https://github.com/zerosecrets/examples/tree/main/digitalocean-kubernetes-github-actions)
 
 A Next.js application with a GitHub Actions workflow that builds the application into a Docker image and then deploys the image to a DigitalOcean Kubernetes cluster. The application displays a button which logs an analytics event with Segment when clicked.
+
+### [`datadog-docker-compose`](https://github.com/zerosecrets/examples/tree/main/datadog-docker-compose)
+
+A Rust TCP client & server. The server runs as a container which logs to `stdout`. There is a custom Datadog agent container which fetches the Datadog API key from Zero and collects logs from the TCP server.
+
+### [`nextjs-braintree`](https://github.com/zerosecrets/examples/tree/main/nextjs-braintree)
+
+A simple Next.js application that illustrates how to charge a credit card using the Braintree GraphQL API.
+
+### [`recaptcha-django`](https://github.com/zerosecrets/examples/tree/main/recaptcha-django)
+
+A Python web app built on Django that renders a user signup form. The form is protected from automated abuse by bots thanks to invisible reCAPTCHA v2.
