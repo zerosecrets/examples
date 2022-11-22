@@ -23,3 +23,7 @@ A simple Next.js application that illustrates how to charge a credit card using 
 ### [`recaptcha-django`](https://github.com/zerosecrets/examples/tree/main/recaptcha-django)
 
 A Python web app built on Django that renders a user signup form. The form is protected from automated abuse by bots thanks to invisible reCAPTCHA v2.
+
+### [`slack-alerts`](https://github.com/zerosecrets/examples/tree/main/slack-alerts)
+
+A Remix web app that allows you to create an alert in Slack by submitting a form.

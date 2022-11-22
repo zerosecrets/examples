@@ -1,0 +1,37 @@
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+p {
+  margin-top: 0;
+}
+
+form {
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+.validation-error {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #bb0000;
+}
+
+.success {
+  color: #00aa00;
+}
