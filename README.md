@@ -31,3 +31,7 @@ A Remix web app that allows you to create an alert in Slack by submitting a form
 ### [`work-queue`](https://github.com/zerosecrets/examples/tree/main/work-queue)
 
 An implementation of the work queue pattern, which is useful for performing computationally-intense tasks outside of your main web server process. In this demonstration project, the Next.js frontend sends a message to an Amazon SQS message queue. The message is then processed by an AWS Lambda worker function.
+
+### [`mailchimp-transactional`](https://github.com/zerosecrets/examples/tree/main/mailchimp-transactional)
+
+A simple Next.js web app that shows a mock user sign up form. If you enter your email address and submit the form, the application will send you an email via the Mailchimp Transactional Email API.
