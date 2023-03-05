@@ -35,3 +35,7 @@ An implementation of the work queue pattern, which is useful for performing comp
 ### [`mailchimp-transactional`](https://github.com/zerosecrets/examples/tree/main/mailchimp-transactional)
 
 A simple Next.js web app that shows a mock user sign up form. If you enter your email address and submit the form, the application will send you an email via the Mailchimp Transactional Email API.
+
+### [`twilio-sms`](https://github.com/zerosecrets/examples/tree/main/twilio-sms)
+
+An Azure Functions project written in TypeScript with a single HTTP-triggered function. When called, the function sends an SMS text message via Twilio's API.
