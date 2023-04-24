@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Retrive the DigitalOcean token from Zero
+        uses: zerosecrets/github-actions/token-to-secrets@main
+        with:
+          zero-token: ${{ secrets.ZERO_TOKEN }}
+          apis: 'digitalocean'
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ env.ZERO_SECRET_TOKEN }}
+
+      # TODO Replace the cluster name with your own
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-26-3-do-0-nyc3-1682249551462
+
+      - name: npm install
+        run: npm install
+
+      - name: npm run build
+        run: npm run build
+
+      - name: Apply
+        run: npm run apply
