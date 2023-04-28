@@ -10,3 +10,19 @@ Run the application locally:
 cd MyFunctionProject
 npm start
 ```
+
+Semi-manual deployment to Azure:
+
+```shell
+cd MyFunctionProject
+npm run build
+
+cd ..
+pulumi up
+```
+
+Automated deployment to Azure — see the blog post for the full setup instructions:
+
+```shell
+npm run deploy
+```
