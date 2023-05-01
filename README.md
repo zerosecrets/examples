@@ -39,3 +39,7 @@ A simple Next.js web app that shows a mock user sign up form. If you enter your 
 ### [`twilio-sms`](https://github.com/zerosecrets/examples/tree/main/twilio-sms)
 
 An Azure Functions project written in TypeScript with a single HTTP-triggered function. When called, the function sends an SMS text message via Twilio's API.
+
+### [`pulumi-azure-functions`](https://github.com/zerosecrets/examples/tree/main/pulumi-azure-functions)
+
+An Azure Functions project written in TypeScript with a single HTTP-triggered function. The Azure infrastructure is defined using the Pulumi Infrastructure as Code platform. You can deploy the application to Azure simply by running `pulumi up`.

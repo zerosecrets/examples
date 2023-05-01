@@ -1,0 +1,5 @@
+/bin/
+/node_modules/
+
+# This will contain your Azure client secret after you run `deploy.mjs`!
+Pulumi.dev.yaml

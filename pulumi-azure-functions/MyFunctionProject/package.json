@@ -1,0 +1,18 @@
+{
+  "name": "my-function-project",
+  "private": true,
+  "license": "UNLICENSED",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start"
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.0.0",
+    "azure-functions-core-tools": "^4.x",
+    "@types/node": "16.x",
+    "typescript": "^4.0.0"
+  }
+}
