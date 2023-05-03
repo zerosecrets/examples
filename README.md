@@ -40,6 +40,10 @@ A simple Next.js web app that shows a mock user sign up form. If you enter your 
 
 An Azure Functions project written in TypeScript with a single HTTP-triggered function. When called, the function sends an SMS text message via Twilio's API.
 
+### [`cdk8s-nginx`](https://github.com/zerosecrets/examples/tree/main/cdk8s-nginx)
+
+A cdk8s project that builds a Kubernetes manifest to deploy the nginx web server. The manifest can be applied to a Kubernetes cluster running in the cloud, for example DigitalOcean Kubernetes.
+
 ### [`pulumi-azure-functions`](https://github.com/zerosecrets/examples/tree/main/pulumi-azure-functions)
 
 An Azure Functions project written in TypeScript with a single HTTP-triggered function. The Azure infrastructure is defined using the Pulumi Infrastructure as Code platform. You can deploy the application to Azure simply by running `pulumi up`.
