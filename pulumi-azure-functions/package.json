@@ -1,0 +1,16 @@
+{
+  "name": "pulumi-azure-functions",
+  "main": "index.ts",
+  "scripts": {
+    "deploy": "zx deploy.mjs"
+  },
+  "dependencies": {
+    "@pulumi/azure-native": "^1.0.0",
+    "@pulumi/pulumi": "^3.0.0",
+    "@zerosecrets/zero": "^0.1.14",
+    "zx": "^7.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16"
+  }
+}
