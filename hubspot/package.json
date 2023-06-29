@@ -1,0 +1,7 @@
+{
+  "name": "hubspot-marketing-website",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

@@ -51,3 +51,7 @@ An Azure Functions project written in TypeScript with a single HTTP-triggered fu
 ### [`openai-api`](https://github.com/zerosecrets/examples/tree/main/openai-api)
 
 A REST API written in TypeScript / Express that accepts the description of a service from a payment invoice and returns the category of the service. It accomplishes this by leveraging the OpenAI API and GPT.
+
+### [`hubspot`](https://github.com/zerosecrets/examples/tree/main/hubspot)
+
+A full stack web application written using Svelte and Node.js + Express that displays a lead capture form. When the user submits the form, the backend uses the HubSpot API to create a new contact in HubSpot.
