@@ -1,0 +1,13 @@
+{
+  "name": "github-linear-sync",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "devDependencies": {
+    "@vercel/node": "^2.15.3",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@linear/sdk": "^6.0.0"
+  }
+}

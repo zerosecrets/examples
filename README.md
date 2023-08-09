@@ -55,3 +55,7 @@ A REST API written in TypeScript / Express that accepts the description of a ser
 ### [`hubspot`](https://github.com/zerosecrets/examples/tree/main/hubspot)
 
 A full stack web application written using Svelte and Node.js + Express that displays a lead capture form. When the user submits the form, the backend uses the HubSpot API to create a new contact in HubSpot.
+
+### [`github-linear-sync`](https://github.com/zerosecrets/examples/tree/main/github-linear-sync)
+
+A Vercel serverless function that is called from a GitHub webhook when a pull request review is submitted. The function then uses the Linear API to update the status of a Linear issue to Has Feedback.
