@@ -1,6 +1,6 @@
 # hubspot
 
-This example is explained in depth in the blog article [Updating a Linear Issue from a GitHub Pull Request using Webhooks](https://www.tryzero.com/blog/updating-a-linear-issue-from-a-github-pull-request-using-webhooks).
+This example is explained in depth in the blog article [Updating a Linear Issue from a GitHub Pull Request using Webhooks](https://tryzero.com/blog/updating-a-linear-issue-from-a-github-pull-request-using-webhooks).
 
 ## Useful commands
 
