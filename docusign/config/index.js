@@ -28,7 +28,7 @@ exports.config = {
 exports.fetchDsClientSecret = async () => {
   if (!process.env.ZERO_TOKEN) {
     throw new Error(
-      'Did you forget to set the ZERO_TOKEN environment variable?'
+      'Did you forget to set the ZERO_TOKEN environment variable?',
     );
   }
 

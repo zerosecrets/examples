@@ -20,9 +20,9 @@ const getExampleByNumber = (manifest, number, apiName) => {
     return undefined;
   }
 
-  const api = manifest.APIs.filter(a => a.Name === apiName)[0];
-  const exampleList = api.Groups.flatMap(g => g.Examples);
-  const example = exampleList.filter(e => e.ExampleNumber === number)[0];
+  const api = manifest.APIs.filter((a) => a.Name === apiName)[0];
+  const exampleList = api.Groups.flatMap((g) => g.Examples);
+  const example = exampleList.filter((e) => e.ExampleNumber === number)[0];
 
   return example;
 };

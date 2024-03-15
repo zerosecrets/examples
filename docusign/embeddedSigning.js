@@ -178,4 +178,8 @@ function makeRecipientViewRequest(args) {
 }
 //ds-snippet-end:eSign1Step4
 
-module.exports = { sendEnvelopeForEmbeddedSigning, makeEnvelope, makeRecipientViewRequest };
+module.exports = {
+  sendEnvelopeForEmbeddedSigning,
+  makeEnvelope,
+  makeRecipientViewRequest,
+};

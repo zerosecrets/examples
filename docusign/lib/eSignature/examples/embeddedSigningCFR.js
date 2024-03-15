@@ -28,11 +28,11 @@ const sendEnvelopeForEmbeddedSigning = async (args) => {
   let workflowId = null;
 
   let workflowResults = await accountsApi.getAccountIdentityVerification(
-    args.accountId
+    args.accountId,
   );
 
   // Find the workflow ID corresponding to the name "Phone Authentication"
-  workflowResults.identityVerification.forEach(workflow => {
+  workflowResults.identityVerification.forEach((workflow) => {
     if (workflow.defaultName === 'SMS for access & signatures') {
       workflowId = workflow.workflowId;
     }
@@ -46,7 +46,7 @@ const sendEnvelopeForEmbeddedSigning = async (args) => {
   args.envelopeArgs.workflowId = workflowId;
 
   let envelopesApi = new docusign.EnvelopesApi(dsApiClient);
-    let results = null;
+  let results = null;
 
   // Make the envelope request body
   //ds-snippet-start:eSign41Step4
@@ -107,7 +107,7 @@ function makeEnvelope(args) {
 
   // add the documents
   let doc1 = new docusign.Document();
-    let doc1b64 = Buffer.from(docPdfBytes).toString('base64');
+  let doc1b64 = Buffer.from(docPdfBytes).toString('base64');
   doc1.documentBase64 = doc1b64;
   doc1.name = 'Lorem Ipsum'; // can be different from actual file name
   doc1.fileExtension = 'pdf';
@@ -124,7 +124,24 @@ function makeEnvelope(args) {
     name: args.signerName,
     clientUserId: args.signerClientId,
     recipientId: 1,
-    identityVerification: { workflowId: args.workflowId, steps: null, inputOptions: [{name: 'phone_number_list', valueType: 'PhoneNumberList', phoneNumberList: [{countryCode: args.countryCode, code: '1', number: args.phoneNumber}]}], idCheckConfigurationName: ''}
+    identityVerification: {
+      workflowId: args.workflowId,
+      steps: null,
+      inputOptions: [
+        {
+          name: 'phone_number_list',
+          valueType: 'PhoneNumberList',
+          phoneNumberList: [
+            {
+              countryCode: args.countryCode,
+              code: '1',
+              number: args.phoneNumber,
+            },
+          ],
+        },
+      ],
+      idCheckConfigurationName: '',
+    },
   });
 
   // Create signHere fields (also known as tabs) on the documents,

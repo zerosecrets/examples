@@ -47,7 +47,7 @@ let app = express()
       store: new MemoryStore({
         checkPeriod: 86400000, // prune expired entries every 24h
       }),
-    })
+    }),
   )
   .use(passport.initialize())
   .use(passport.session())
@@ -158,7 +158,7 @@ You can set them in the configuration file config/appsettings.json or set enviro
       refreshToken,
       params,
       profile,
-      done
+      done,
     ) {
       // The params arg will be passed additional parameters of the grant.
       // See https://github.com/jaredhanson/passport-oauth2/pull/84
@@ -171,7 +171,7 @@ You can set them in the configuration file config/appsettings.json or set enviro
       user.expiresIn = params.expires_in;
       user.tokenExpirationTimestamp = moment().add(user.expiresIn, 's'); // The dateTime when the access token will expire
       return done(null, user);
-    }
+    },
   );
 
   /**

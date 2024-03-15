@@ -9,7 +9,7 @@
  * depending on your use case, you can store and then use the
  * refresh token instead of requiring the user to re-authenticate.
  * @author DocuSign
-*/
+ */
 
 'use strict';
 
@@ -22,9 +22,9 @@ const MemoryStore = require('memorystore')(session); // https://github.com/rocco
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const tokenReplaceMinGet = 60; // For a form Get, the token must expire at least this number of
-                               // minutes later or it will be replaced
+// minutes later or it will be replaced
 
-    const max_session_min = 180;
+const max_session_min = 180;
 /**
  * Manages OAuth Authentication Code Grant with DocuSign.
  * @constructor
@@ -39,90 +39,102 @@ let DSAuthCodeGrant = function _DSAuthCodeGrant(req) {
   // good for 30 days. You'd probably want to encrypt it too.
   this._tokenExpiration = req.user && req.user.tokenExpirationTimestamp; // when does the token expire?
   this._debug = true; // ### DEBUG ### setting
-
 }; // end of DSAuthCodeGrant constructor function
 
 // Public constants
 /**
  * Exception when setting an account
  * @constant
-*/
+ */
 DSAuthCodeGrant.prototype.Error_set_account = 'Error_set_account';
 /**
  * Exception: Could not find account information for the user
  * @constant
-*/
-DSAuthCodeGrant.prototype.Error_account_not_found = 'Could not find account information for the user';
+ */
+DSAuthCodeGrant.prototype.Error_account_not_found =
+  'Could not find account information for the user';
 /**
  * Exception when getting a token, "invalid grant"
  * @constant
-*/
+ */
 DSAuthCodeGrant.prototype.Error_invalid_grant = 'invalid_grant'; // message when bad client_id is provided
 
 // public functions
-DSAuthCodeGrant.prototype.login = function(req, res, next) {
-    // Reset
-    this.internalLogout(req, res);
-    req.session.authMethod = 'grand-auth';
-    passport.authenticate('docusign')(req, res, next);
+DSAuthCodeGrant.prototype.login = function (req, res, next) {
+  // Reset
+  this.internalLogout(req, res);
+  req.session.authMethod = 'grand-auth';
+  passport.authenticate('docusign')(req, res, next);
 };
 
 DSAuthCodeGrant.prototype.oauth_callback1 = (req, res, next) => {
-    // This callback URL is used for the login flow
-    passport.authenticate('docusign', { failureRedirect: '/ds/login' })(req, res, next);
+  // This callback URL is used for the login flow
+  passport.authenticate('docusign', { failureRedirect: '/ds/login' })(
+    req,
+    res,
+    next,
+  );
 };
-DSAuthCodeGrant.prototype.oauth_callback2 = function _oauth_callback2(req, res, next) {
-    this._accessToken = req.user.accessToken;
-    console.log(`Received access_token: |${req.user.accessToken}|`);
-    console.log(`Expires at ${req.user.tokenExpirationTimestamp.format('dddd, MMMM Do YYYY, h:mm:ss a')}`);
-    req.flash('info', 'You have authenticated with DocuSign.');
+DSAuthCodeGrant.prototype.oauth_callback2 = function _oauth_callback2(
+  req,
+  res,
+  next,
+) {
+  this._accessToken = req.user.accessToken;
+  console.log(`Received access_token: |${req.user.accessToken}|`);
+  console.log(
+    `Expires at ${req.user.tokenExpirationTimestamp.format('dddd, MMMM Do YYYY, h:mm:ss a')}`,
+  );
+  req.flash('info', 'You have authenticated with DocuSign.');
 
-    // The DocuSign Passport strategy looks up the user's account information via OAuth::userInfo.
-    // See https://developers.docusign.com/esign-rest-api/guides/authentication/user-info-endpoints
-    // The data includes the user's information and information on the accounts the user has access too.
-    //
-    // To make an API or SDK call, the accountId and base url are needed.
-    //
-    // A user can (and often) belongs to multiple accounts.
-    // You can search for a specific account the user has, or
-    // give the user the choice of account to use, or use
-    // the user's default account. This example looks for a specific account or the default account.
-    //
-    // The baseUri changes rarely so it can (and should) be cached.
-    //
-    // req.user holds the result of the DocuSign OAuth call and the OAuth::userInfo method,
-    // except for the expires element.
-    // req.user.accessToken: "eyJ0Xbz....vXXFw7IlVwfDRA"
-    // req.user.accounts:  An array of accounts that the user has access to
-    //     An example account:
-    //      {account_id: "8118f2...8a",
-    //      is_default: false,
-    //      account_name: "Xylophone World",
-    //      base_uri: "https://demo.docusign.net"}  (Note: does not include '/restapi/v2')
-    // created: "2015-05-20T11:48:23.363"  // when was the user's record created
-    // email: "name@example.com" // the user's email
-    // The expires element is added in function _processDsResult in file index.js.
-    // It is the datetime when the token will expire:
-    // expires: Moment {_isAMomentObject: true, _isUTC: false, _pf: {…}, _locale: Locale, _d: Tue Jun 26 2018 04:05:37 GMT+0300 (IDT), …}
-    // expiresIn: 28800  // when the token will expire, in seconds, from when the OAuth response is sent by DocuSign
-    // family_name: "LastName" // the user's last name
-    // given_name: "Larry" // the user's first name
-    // name: "Larry LastName"
-    // provider: "docusign"
-    // refreshToken: "eyJ0eXAiOiJ...HB4Q" // Can be used to obtain a new set of access and response tokens.
-    // The lifetime for the refreshToken is typically 30 days
-    // sub: "...5fed18870" // the user's id in guid format
+  // The DocuSign Passport strategy looks up the user's account information via OAuth::userInfo.
+  // See https://developers.docusign.com/esign-rest-api/guides/authentication/user-info-endpoints
+  // The data includes the user's information and information on the accounts the user has access too.
+  //
+  // To make an API or SDK call, the accountId and base url are needed.
+  //
+  // A user can (and often) belongs to multiple accounts.
+  // You can search for a specific account the user has, or
+  // give the user the choice of account to use, or use
+  // the user's default account. This example looks for a specific account or the default account.
+  //
+  // The baseUri changes rarely so it can (and should) be cached.
+  //
+  // req.user holds the result of the DocuSign OAuth call and the OAuth::userInfo method,
+  // except for the expires element.
+  // req.user.accessToken: "eyJ0Xbz....vXXFw7IlVwfDRA"
+  // req.user.accounts:  An array of accounts that the user has access to
+  //     An example account:
+  //      {account_id: "8118f2...8a",
+  //      is_default: false,
+  //      account_name: "Xylophone World",
+  //      base_uri: "https://demo.docusign.net"}  (Note: does not include '/restapi/v2')
+  // created: "2015-05-20T11:48:23.363"  // when was the user's record created
+  // email: "name@example.com" // the user's email
+  // The expires element is added in function _processDsResult in file index.js.
+  // It is the datetime when the token will expire:
+  // expires: Moment {_isAMomentObject: true, _isUTC: false, _pf: {…}, _locale: Locale, _d: Tue Jun 26 2018 04:05:37 GMT+0300 (IDT), …}
+  // expiresIn: 28800  // when the token will expire, in seconds, from when the OAuth response is sent by DocuSign
+  // family_name: "LastName" // the user's last name
+  // given_name: "Larry" // the user's first name
+  // name: "Larry LastName"
+  // provider: "docusign"
+  // refreshToken: "eyJ0eXAiOiJ...HB4Q" // Can be used to obtain a new set of access and response tokens.
+  // The lifetime for the refreshToken is typically 30 days
+  // sub: "...5fed18870" // the user's id in guid format
 
-    this.getDefaultAccountInfo(req);
+  this.getDefaultAccountInfo(req);
 
-    // If an example was requested, but authentication was needed (and done),
-    // Then do the example's GET now.
-    // Else redirect to home
-    if (req.session.eg) {
-      let eg = req.session.eg;
-      req.session.eg = null;
-      res.redirect(`/${eg}`);
-    } else { res.redirect('/'); }
+  // If an example was requested, but authentication was needed (and done),
+  // Then do the example's GET now.
+  // Else redirect to home
+  if (req.session.eg) {
+    let eg = req.session.eg;
+    req.session.eg = null;
+    res.redirect(`/${eg}`);
+  } else {
+    res.redirect('/');
+  }
 };
 
 /**
@@ -132,10 +144,9 @@ DSAuthCodeGrant.prototype.oauth_callback2 = function _oauth_callback2(req, res, 
  */
 DSAuthCodeGrant.prototype.logout = function _logout(req, res) {
   let logoutCB = encodeURIComponent(res.locals.hostUrl + '/ds/logoutCallback');
-     let oauthServer = dsConfig.dsOauthServer;
-     let client_id = dsConfig.dsClientId;
-     let logoutURL = `${oauthServer}/logout?client_id=${client_id}&redirect_uri=${logoutCB}&response_mode=logout_redirect`
-    ;
+  let oauthServer = dsConfig.dsOauthServer;
+  let client_id = dsConfig.dsClientId;
+  let logoutURL = `${oauthServer}/logout?client_id=${client_id}&redirect_uri=${logoutCB}&response_mode=logout_redirect`;
   // console.log (`Redirecting to ${logoutURL}`);
   // res.redirect(logoutURL);
 
@@ -149,14 +160,14 @@ DSAuthCodeGrant.prototype.logout = function _logout(req, res) {
  * @function
  */
 DSAuthCodeGrant.prototype.logoutCallback = function _logout(req, res) {
-  req.logout(function(err) {
+  req.logout(function (err) {
     if (err) {
       throw err;
     }
   }); // see http://www.passportjs.org/docs/logout/
   this.internalLogout(req, res);
-    req.flash('info', 'You have logged out.');
-    res.redirect('/');
+  req.flash('info', 'You have logged out.');
+  res.redirect('/');
 };
 
 /**
@@ -177,20 +188,19 @@ DSAuthCodeGrant.prototype.internalLogout = function _internalLogout(req, res) {
  * @function
  * @param req the request object
  */
-DSAuthCodeGrant.prototype.getDefaultAccountInfo = function _getDefaultAccountInfo(req) {
+DSAuthCodeGrant.prototype.getDefaultAccountInfo =
+  function _getDefaultAccountInfo(req) {
     const targetAccountId = dsConfig.targetAccountId;
-         const accounts = req.user.accounts
-        ;
-
+    const accounts = req.user.accounts;
     let account = null; // the account we want to use
     // Find the account...
     if (targetAccountId) {
-        account = accounts.find(a => a.account_id === targetAccountId);
-        if (!account) {
-            throw new Error(this.Error_account_not_found);
-        }
+      account = accounts.find((a) => a.account_id === targetAccountId);
+      if (!account) {
+        throw new Error(this.Error_account_not_found);
+      }
     } else {
-        account = accounts.find(a => a.is_default);
+      account = accounts.find((a) => a.is_default);
     }
 
     // Save the account information
@@ -198,7 +208,7 @@ DSAuthCodeGrant.prototype.getDefaultAccountInfo = function _getDefaultAccountInf
     req.session.accountName = account.account_name;
     req.session.basePath = account.base_uri + baseUriSuffix;
     console.log(`Using account ${account.account_id}: ${account.account_name}`);
-};
+  };
 
 /**
  * This is the key method for the object.
@@ -211,19 +221,27 @@ DSAuthCodeGrant.prototype.getDefaultAccountInfo = function _getDefaultAccountInf
  * @param integer bufferMin How long must the access token be valid
  * @returns boolean tokenOK
  */
-DSAuthCodeGrant.prototype.checkToken = function _checkToken(bufferMin = tokenReplaceMinGet) {
+DSAuthCodeGrant.prototype.checkToken = function _checkToken(
+  bufferMin = tokenReplaceMinGet,
+) {
   let noToken = !this._accessToken || !this._tokenExpiration;
-     let now = moment();
-     let needToken = noToken || moment(this._tokenExpiration).subtract(
-        bufferMin, 'm').isBefore(now)
-    ;
+  let now = moment();
+  let needToken =
+    noToken ||
+    moment(this._tokenExpiration).subtract(bufferMin, 'm').isBefore(now);
   if (this._debug) {
-    if (noToken) { this._debug_log('checkToken: Starting up--need a token'); }
-    if (needToken && !noToken) { this._debug_log('checkToken: Replacing old token'); }
-    if (!needToken) { this._debug_log('checkToken: Using current token'); }
+    if (noToken) {
+      this._debug_log('checkToken: Starting up--need a token');
+    }
+    if (needToken && !noToken) {
+      this._debug_log('checkToken: Replacing old token');
+    }
+    if (!needToken) {
+      this._debug_log('checkToken: Using current token');
+    }
   }
 
-  return (!needToken);
+  return !needToken;
 };
 
 /**
@@ -237,15 +255,16 @@ DSAuthCodeGrant.prototype.setEg = function _setEg(req, eg) {
   req.session.eg = eg;
 };
 
-
 /**
  * If in debug mode, prints message to the console
  * @function
  * @param {string} m The message to be printed
  * @private
  */
-DSAuthCodeGrant.prototype._debug_log = function(m){
-  if (!this._debug) { return; }
+DSAuthCodeGrant.prototype._debug_log = function (m) {
+  if (!this._debug) {
+    return;
+  }
   console.log(this._debug_prefix + ': ' + m);
 };
 
@@ -256,14 +275,21 @@ DSAuthCodeGrant.prototype._debug_log = function(m){
  * @param {object} obj The object to be pretty-printed
  * @private
  */
-DSAuthCodeGrant.prototype._debug_log_obj = function(m, obj){
-  if (!this._debug) { return; }
-  console.log(this._debug_prefix + ': ' + m + '\n' + JSON.stringify(obj, null, 4));
+DSAuthCodeGrant.prototype._debug_log_obj = function (m, obj) {
+  if (!this._debug) {
+    return;
+  }
+  console.log(
+    this._debug_prefix + ': ' + m + '\n' + JSON.stringify(obj, null, 4),
+  );
 };
 
-function dsLoginCB1(req, res, next) { req.dsAuthCodeGrant.oauth_callback1(req, res, next); }
-function dsLoginCB2(req, res, next) { req.dsAuthCodeGrant.oauth_callback2(req, res, next); }
-
+function dsLoginCB1(req, res, next) {
+  req.dsAuthCodeGrant.oauth_callback1(req, res, next);
+}
+function dsLoginCB2(req, res, next) {
+  req.dsAuthCodeGrant.oauth_callback2(req, res, next);
+}
 
 // Invoke this method efter initialization your Express application.
 /**
@@ -274,37 +300,40 @@ function dsLoginCB2(req, res, next) { req.dsAuthCodeGrant.oauth_callback2(req, r
  * @private
  */
 function UseDSAuth(app, hostUrl) {
-  app.use(session({
-    secret: dsConfig.sessionSecret,
-    name: 'ds-session',
-    cookie: { maxAge: max_session_min * 60000 },
-    saveUninitialized: true,
-    resave: true,
-    store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+  app
+    .use(
+      session({
+        secret: dsConfig.sessionSecret,
+        name: 'ds-session',
+        cookie: { maxAge: max_session_min * 60000 },
+        saveUninitialized: true,
+        resave: true,
+        store: new MemoryStore({
+          checkPeriod: 86400000, // prune expired entries every 24h
+        }),
+      }),
+    )
+    .use(passport.initialize())
+    .use(passport.session())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use((req, res, next) => {
+      res.locals.user = req.user;
+      res.locals.session = req.session;
+      res.locals.dsConfig = { ...dsConfig };
+      res.locals.hostUrl = hostUrl; // Used by DSAuthCodeGrant#logout
+      next();
+    }) // Send user info to views
+    .use(flash())
+    // Add an instance of DSAuthCodeGrant to req
+    .use((req, res, next) => {
+      req.dsAuthCodeGrant = new DSAuthCodeGrant(req);
+      req.dsAuth = req.dsAuthCodeGrant;
+      if (req.session.authMethod === 'jwt-auth') {
+        req.dsAuth = req.dsAuthJwt;
+      }
+      next();
     })
-  }))
-  .use(passport.initialize())
-  .use(passport.session())
-  .use(bodyParser.urlencoded({ extended: true }))
-  .use((req, res, next) => {
-    res.locals.user = req.user;
-    res.locals.session = req.session;
-    res.locals.dsConfig = { ...dsConfig };
-    res.locals.hostUrl = hostUrl; // Used by DSAuthCodeGrant#logout
-    next();
-  })// Send user info to views
-  .use(flash())
-  // Add an instance of DSAuthCodeGrant to req
-  .use((req, res, next) => {
-    req.dsAuthCodeGrant = new DSAuthCodeGrant(req);
-    req.dsAuth = req.dsAuthCodeGrant;
-    if (req.session.authMethod === 'jwt-auth') {
-      req.dsAuth = req.dsAuthJwt;
-    }
-    next();
-  })
-  .get('/ds/callback', [dsLoginCB1, dsLoginCB2]);
+    .get('/ds/callback', [dsLoginCB1, dsLoginCB2]);
 }
 
 module.exports = { UseDSAuth }; // SET EXPORTS for the module.
