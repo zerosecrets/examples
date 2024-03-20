@@ -59,3 +59,7 @@ A full stack web application written using Svelte and Node.js + Express that dis
 ### [`github-linear-sync`](https://github.com/zerosecrets/examples/tree/main/github-linear-sync)
 
 A Vercel serverless function that is called from a GitHub webhook when a pull request review is submitted. The function then uses the Linear API to update the status of a Linear issue to Has Feedback.
+
+### [`docusign`](https://github.com/zerosecrets/examples/tree/main/docusign)
+
+A Node.js web application that implements the DocuSign embedded signing workflow to get the user's signature on a document. The code is powered by the DocuSign eSignature REST API.
