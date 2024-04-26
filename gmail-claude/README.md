@@ -1,0 +1,7 @@
+# Gmail + Claude + Slack Example
+
+This example is explained in depth in the blog post series "Build an Email Summary Bot using Claude AI, Gmail, and Slack": [Part 1](https://www.tryzero.com/blog/2024-05-01-build-an-email-summary-bot-using-claude-ai-gmail-and-slack-part-1) and _Part 2 coming soon_.
+
+## Useful commands
+
+- `ZERO_TOKEN='...' npm start` - run the application

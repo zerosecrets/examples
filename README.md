@@ -63,3 +63,7 @@ A Vercel serverless function that is called from a GitHub webhook when a pull re
 ### [`docusign`](https://github.com/zerosecrets/examples/tree/main/docusign)
 
 A Node.js web application that implements the DocuSign embedded signing workflow to get the user's signature on a document. The code is powered by the DocuSign eSignature REST API.
+
+### [`gmail-claude`](https://github.com/zerosecrets/examples/tree/main/gmail-claude)
+
+A Node.js web application that watches your Gmail inbox for new emails. When an email is received, the application uses the Claude AI assistant to summarize the email and then sends you the summary on Slack as a DM.
