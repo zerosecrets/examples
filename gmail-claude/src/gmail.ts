@@ -82,6 +82,7 @@ export async function watchInbox(client: OAuth2Client): Promise<string> {
 }
 
 export interface GmailMessage {
+  from: string;
   subject: string;
   body: string;
 }
@@ -101,6 +102,9 @@ async function getMessage(
     throw new Error('Getting message failed.');
   }
 
+  const from =
+    res.data.payload?.headers?.find((h) => h.name === 'From')?.value ?? '';
+
   const subject =
     res.data.payload?.headers?.find((h) => h.name === 'Subject')?.value ?? '';
 
@@ -110,9 +114,11 @@ async function getMessage(
     (p) => p.mimeType === 'text/plain'
   );
 
-  const body = atob(plainTextPart?.body?.data ?? '');
+  const body = Buffer.from(plainTextPart?.body?.data ?? '', 'base64').toString(
+    'utf-8'
+  );
 
-  return { subject, body };
+  return { from, subject, body };
 }
 
 interface QueryNewMessagesReturn {
