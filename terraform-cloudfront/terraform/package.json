@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@zerosecrets/zero": "^0.2.0",
+    "zx": "^8.1.2"
+  }
+}
