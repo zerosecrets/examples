@@ -68,6 +68,10 @@ A Node.js web application that implements the DocuSign embedded signing workflow
 
 A Node.js web application that watches your Gmail inbox for new emails. When an email is received, the application uses the Claude AI assistant to summarize the email and then sends you the summary on Slack as a DM.
 
+### [`nextjs-sendgrid`](https://github.com/zerosecrets/examples/tree/main/nextjs-sendgrid)
+
+A Next.js web application that displays a purchase confirmation form. When you enter your email address in the form, it calls a backend API method which sends off a transactional email using the SendGrid API.
+
 ### [`terraform-cloudfront`](https://github.com/zerosecrets/examples/tree/main/terraform-cloudfront)
 
 A Terraform project that creates an Amazon Cloudfront distribution which serves a static website hosted in S3. This directory also contains a trivial Next.js app that can be used for testing purposes.
