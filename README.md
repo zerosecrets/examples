@@ -75,3 +75,7 @@ A Next.js web application that displays a purchase confirmation form. When you e
 ### [`terraform-cloudfront`](https://github.com/zerosecrets/examples/tree/main/terraform-cloudfront)
 
 A Terraform project that creates an Amazon Cloudfront distribution which serves a static website hosted in S3. This directory also contains a trivial Next.js app that can be used for testing purposes.
+
+### [`auth0`](https://github.com/zerosecrets/examples/tree/main/auth0)
+
+A Next.js app that uses the Auth0 Next.js SDK to implement authentication. The demo app displays log in / log out buttons and the email address of the current user, if signed in.
