@@ -79,3 +79,7 @@ A Terraform project that creates an Amazon Cloudfront distribution which serves 
 ### [`auth0`](https://github.com/zerosecrets/examples/tree/main/auth0)
 
 A Next.js app that uses the Auth0 Next.js SDK to implement authentication. The demo app displays log in / log out buttons and the email address of the current user, if signed in.
+
+### [`pusher`](https://github.com/zerosecrets/examples/tree/main/pusher)
+
+A Next.js app that implements real-time in-app notifications via Pusher. You can manually send a notification via a form, and the server will broadcast that notification to all clients.
