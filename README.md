@@ -79,3 +79,7 @@ A Terraform project that creates an Amazon Cloudfront distribution which serves 
 ### [`auth0`](https://github.com/zerosecrets/examples/tree/main/auth0)
 
 A Next.js app that uses the Auth0 Next.js SDK to implement authentication. The demo app displays log in / log out buttons and the email address of the current user, if signed in.
+
+### [`rollbar`](https://github.com/zerosecrets/examples/tree/main/rollbar)
+
+An Express.js web API with error logging implemented via Rollbar.
