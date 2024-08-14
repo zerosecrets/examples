@@ -83,3 +83,7 @@ A Next.js app that uses the Auth0 Next.js SDK to implement authentication. The d
 ### [`pusher`](https://github.com/zerosecrets/examples/tree/main/pusher)
 
 A Next.js app that implements real-time in-app notifications via Pusher. You can manually send a notification via a form, and the server will broadcast that notification to all clients.
+
+### [`rollbar`](https://github.com/zerosecrets/examples/tree/main/rollbar)
+
+An Express.js web API with error logging implemented via Rollbar.
