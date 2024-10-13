@@ -87,3 +87,7 @@ A Next.js app that implements real-time in-app notifications via Pusher. You can
 ### [`rollbar`](https://github.com/zerosecrets/examples/tree/main/rollbar)
 
 An Express.js web API with error logging implemented via Rollbar.
+
+### [`datadog-winston`](https://github.com/zerosecrets/examples/tree/main/datadog-winston)
+
+A SvelteKit app (Node.js) that logs errors to Datadog using a Winston logger.
