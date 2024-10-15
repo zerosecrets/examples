@@ -1,6 +1,6 @@
 # DocuSign Example
 
-This example is explained in depth in the blog article [Using DocuSign to Request Signatures within your App](https://www.tryzero.com/blog/2024-03-16-using-docusign-to-request-signatures-within-your-app).
+This example is explained in depth in the blog article [Using DocuSign to Request Signatures within your App](https://www.tryzero.com/blog/using-docusign-to-request-signatures-within-your-app).
 
 ## Useful commands
 
