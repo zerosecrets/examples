@@ -91,3 +91,7 @@ An Express.js web API with error logging implemented via Rollbar.
 ### [`datadog-winston`](https://github.com/zerosecrets/examples/tree/main/datadog-winston)
 
 A SvelteKit app (Node.js) that logs errors to Datadog using a Winston logger.
+
+### [`s3`](https://github.com/zerosecrets/examples/tree/main/s3)
+
+A Node.js application that adds and removes Amazon S3 objects using the [@aws-sdk/client-s3](https://www.npmjs.com/package/@aws-sdk/client-s3) package.
