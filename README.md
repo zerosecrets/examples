@@ -95,3 +95,7 @@ A SvelteKit app (Node.js) that logs errors to Datadog using a Winston logger.
 ### [`s3`](https://github.com/zerosecrets/examples/tree/main/s3)
 
 A Node.js application that adds and removes Amazon S3 objects using the [@aws-sdk/client-s3](https://www.npmjs.com/package/@aws-sdk/client-s3) package.
+
+### [`notion`](https://github.com/zerosecrets/examples/tree/main/notion)
+
+A Next.js application that displays a lead capture form and sends the submissions to a Notion database.
